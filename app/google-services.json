@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "986508297267",
+    "project_id": "youthconnect-31262",
+    "storage_bucket": "youthconnect-31262.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986508297267:android:c77e11a81ffa7eaf930f46",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgAlJtOt1ITBcf2tBHsnyEqFIsRYD0dqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986508297267:android:e74dd0e5f646d44f930f46",
+        "android_client_info": {
+          "package_name": "com.example.youthconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgAlJtOt1ITBcf2tBHsnyEqFIsRYD0dqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986508297267:android:c3ba9ecbc8ed5b3c930f46",
+        "android_client_info": {
+          "package_name": "com.example.youthconnectproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgAlJtOt1ITBcf2tBHsnyEqFIsRYD0dqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
