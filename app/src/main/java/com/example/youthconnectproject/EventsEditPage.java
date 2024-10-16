@@ -29,7 +29,7 @@ import java.util.Objects;
 public class EventsEditPage extends AppCompatActivity {
 
     TextInputEditText editTextEventName, editTextEventDescription, editTextEventActivities, editTextEventDate;
-    Button btn_go_back, btn_update_event;
+    Button btn_go_back, btn_update_event, btn_delete_event;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
 
@@ -45,6 +45,7 @@ public class EventsEditPage extends AppCompatActivity {
         editTextEventDate = findViewById(R.id.event_date);
         btn_update_event = findViewById(R.id.btn_update_event);
         btn_go_back = findViewById(R.id.btn_go_back);
+        btn_delete_event = findViewById(R.id.btn_delete_event);
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -95,6 +96,23 @@ public class EventsEditPage extends AppCompatActivity {
                 if (!TextUtils.isEmpty(event_name) && !TextUtils.isEmpty(event_date) && !TextUtils.isEmpty(event_description) && !TextUtils.isEmpty(event_activities)) {
                     updateEventData(eventID, event_name, event_date, event_description, event_activities);
                 }
+            }
+        });
+
+        btn_delete_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DocumentReference df = fStore.collection("Events").document(eventID);
+                df.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(EventsEditPage.this, "Event Deleted", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), EventsViewPage.class));
+                        finish();
+                    }
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(EventsEditPage.this, "Error Deleting Event: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             }
         });
 

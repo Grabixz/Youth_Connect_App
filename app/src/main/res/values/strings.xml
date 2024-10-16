@@ -77,6 +77,6 @@
     <string name="update_event">Update Event</string>
     <string name="delete_event">Delete Event</string>
     <string name="all_users">All Users</string>
-    <string name="delete_user">Delete User</string>
+    <string name="delete_user">Delete Account</string>
     <string name="view_user">View User</string>
 </resources>

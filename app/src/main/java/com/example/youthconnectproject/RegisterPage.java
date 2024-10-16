@@ -22,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-
-
 public class RegisterPage extends AppCompatActivity {
 
     TextInputEditText editTextEmail, editTextPassword, editTextFirstName, editTextLastName;
@@ -91,6 +89,7 @@ public class RegisterPage extends AppCompatActivity {
                     editTextPassword.setError("Password field cannot be empty");
                     progressBar.setVisibility(View.GONE);
                 }
+
                 if (!TextUtils.isEmpty(first_name) && !TextUtils.isEmpty(last_name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
                     mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -106,6 +105,7 @@ public class RegisterPage extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                     finish();
                                 }).addOnFailureListener(e -> {
+                                    progressBar.setVisibility(View.GONE);
                                     Toast.makeText(RegisterPage.this, "Failed to create account", Toast.LENGTH_SHORT).show();
                                 });
                             }
@@ -113,11 +113,13 @@ public class RegisterPage extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegisterPage.this, "Failed to create account: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
             }
         });
+
     }
 }

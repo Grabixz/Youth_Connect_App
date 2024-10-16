@@ -135,19 +135,29 @@ public class AccountPage extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if (currentUser != null) {
-                    currentUser.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    DocumentReference df = fStore.collection("Users").document(currentUser.getUid());
+                    df.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(AccountPage.this, "Account deleted successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AccountPage.this, LoginPage.class));
-                            finish();
+                        public void onSuccess(Void unused) {
+                            currentUser.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(AccountPage.this, "Account deleted successfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(AccountPage.this, LoginPage.class));
+                                finish();
+                            }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(AccountPage.this, "Failed to Delete. Logout and back in to try again.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AccountPage.this, "Failed to delete Account from Auth: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(AccountPage.this, "Failed to Delete. Logout and back in to try again.", Toast.LENGTH_SHORT).show();
                     });
+
                 }
             }
         });

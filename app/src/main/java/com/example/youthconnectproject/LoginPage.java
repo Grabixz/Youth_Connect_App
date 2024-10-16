@@ -38,7 +38,7 @@ public class LoginPage extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             checkUserAccessLevel(currentUser.getUid());
         }
     }
@@ -90,6 +90,7 @@ public class LoginPage extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
                         }
                     });

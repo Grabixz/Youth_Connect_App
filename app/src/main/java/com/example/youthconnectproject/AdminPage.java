@@ -48,8 +48,7 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), LoginPage.class));
                 finish();
             }
         });
